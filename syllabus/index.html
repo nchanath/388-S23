@@ -6,15 +6,15 @@
   
   <title>Syllabus | CSCI 388 Cryptography Course Website</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="BR: Course notes by Mihir Bellare and Phillip Rogaway.  N: Symmetric Cryptography Basics by Chanathip Namprempre. BS: A Graduate Course in Applied Cryptography by Dan Boneh and Victor Shoup. Nali and">
+  <meta name="description" content="BR: Course notes by Mihir Bellare and Phillip Rogaway.  N: Symmetric Cryptography Basics by Chanathip Namprempre. BS: A Graduate Course in Applied Cryptography by Dan Boneh and Victor Shoup. R: Joy o">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Syllabus">
 <meta property="og:url" content="https://nchanath.github.io/388-S23/syllabus/index.html">
 <meta property="og:site_name" content="CSCI 388 Cryptography Course Website">
-<meta property="og:description" content="BR: Course notes by Mihir Bellare and Phillip Rogaway.  N: Symmetric Cryptography Basics by Chanathip Namprempre. BS: A Graduate Course in Applied Cryptography by Dan Boneh and Victor Shoup. Nali and">
+<meta property="og:description" content="BR: Course notes by Mihir Bellare and Phillip Rogaway.  N: Symmetric Cryptography Basics by Chanathip Namprempre. BS: A Graduate Course in Applied Cryptography by Dan Boneh and Victor Shoup. R: Joy o">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-01-14T23:18:40.000Z">
-<meta property="article:modified_time" content="2023-01-23T01:25:58.655Z">
+<meta property="article:modified_time" content="2023-01-25T06:02:13.845Z">
 <meta property="article:author" content="Chanathip Namprempre">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:creator" content="@ajmeaw">
@@ -109,6 +109,7 @@
 <li>BR: <a href="BR-2005.pdf">Course notes</a> by Mihir Bellare and Phillip Rogaway. </li>
 <li>N: <a href="CN-2011.pdf">Symmetric Cryptography Basics</a> by Chanathip Namprempre.</li>
 <li>BS: <a target="_blank" rel="noopener" href="https://toc.cryptobook.us/book.pdf">A Graduate Course in Applied Cryptography</a> by Dan Boneh and Victor Shoup.</li>
+<li>R: <a target="_blank" rel="noopener" href="https://joyofcryptography.com/">Joy of Cryptography</a> by Mike Rosulek.</li>
 <li>Nali and van Oorschot, “<a target="_blank" rel="noopener" href="https://carleton.ca/scs/research/scs-technical-reports/technical-reports-2007/tr-07-14-simple-blind-search-on-public-key-encrypted-data/">Simple Blind Search on Public-Key Encrypted Data</a>.”</li>
 <li>Melara, Blankstein, Bonneau, Felton, and Freedman, “<a target="_blank" rel="noopener" href="https://eprint.iacr.org/2014/1004.pdf">CONIKS: Bringing Key Transparency to End Users</a>.”</li>
 <li>Martin R. Albrecht, Sofía Celi, Benjamin Dowling and Daniel Jones, “<a target="_blank" rel="noopener" href="https://nebuchadnezzar-megolm.github.io/">Practically-exploitable Cryptographic Vulnerabilities in Matrix</a>.”</li>
@@ -203,6 +204,22 @@
 <td><strong>Case study*</strong>: Revokable Broadcast Encryption</td>
 <td>BS: Section 5.6</td>
 <td>PS2</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>Padding oracle attack</td>
+<td>R: Section 9.1, 9.3 (skip Fig 9.1)</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://web.engr.oregonstate.edu/~rosulekm/crypto/padding.html">Demo</a></td>
+<td></td>
 </tr>
 <tr>
 <td>4</td>
@@ -618,5 +635,21 @@
 
 
   </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
 </body>
 </html>

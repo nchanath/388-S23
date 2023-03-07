@@ -1,0 +1,169 @@
+\documentclass{exam}
+
+\usepackage{colortbl}
+\usepackage{fancyvrb}
+\usepackage{listings} 
+\usepackage{amsmath}
+
+\setlength{\textwidth}{6.5in}
+\setlength{\textheight}{9in}
+\setlength{\oddsidemargin}{0in}
+\setlength{\evensidemargin}{0in}
+\setlength{\topmargin}{0in}
+\setlength{\headheight}{0in}
+\setlength{\headsep}{0in}
+\setlength{\footskip}{0.5in}
+
+\def\COURSENAME{Cryptography}
+\def\COURSECODE{CSCI/MATH 388}
+\def\YEAR{2023}
+
+\definecolor{lightgreen}{cmyk}{.25,0,.25,0}
+\definecolor{black}{rgb}{0,0,0}
+\definecolor{dgray}{rgb}{0.1,0.1,0.1}
+\definecolor{lgray}{rgb}{0.5,0.5,0.5}
+\definecolor{dblue}{rgb}{.2,.4,.6}
+\definecolor{lblue}{rgb}{.2,0,.7}
+\definecolor{llblue}{rgb}{.2,0,.6}
+\definecolor{gold}{rgb}{0.8512,0.6042,0.0000}
+\definecolor{dred}{rgb}{0.9,0,0}
+\definecolor{lred}{rgb}{1.0000,0.2013,0.1405}
+\definecolor{orange}{rgb}{1,0.3,0}
+\definecolor{dgreen}{rgb}{.01,.6,.06}
+\definecolor{lgreen}{rgb}{0.2610,0.8730,0.2875}
+\definecolor{peachpuff}{rgb}{1.0000,0.7197,0.5181}
+\definecolor{cornflowerblue}{rgb}{0.0859,0.2912,0.8708}
+\definecolor{deepskyblue}{rgb}{0.0000,0.5227,1.0000}
+\definecolor{lightskyblue}{rgb}{0.1946,0.6324,1.0000}
+\definecolor{darkturquoise}{rgb}{0.0000,0.6324,0.6861}
+\definecolor{darkseagreen}{rgb}{0.2264,0.5227,0.2498}
+\definecolor{lemon}{rgb}{0.8512,0.8416,0.5181}
+\definecolor{dred}{rgb}{0.9,0,0}
+
+
+\newcommand{\T}{\mathbf{T}}
+\newcommand{\F}{\mathbf{F}}
+\newcommand{\Q}{\mathbf{Q}}
+
+
+\newcommand{\bheading}[1]{\vspace{10pt} \noindent \textbf{#1}}
+
+\newenvironment{problemstmt}[1]{\begin{rm}
+  \vspace{.3in}
+  \noindent \textbf{Problem #1.}}
+  {\end{rm}
+  \vspace{.3in}
+  \hrule}
+
+\input{header.tex}
+
+
+\begin{document}
+
+
+\begin{tabbing}
+  \`\=\kill
+  \textbf{\COURSECODE:} \COURSENAME \` Spring \YEAR \\
+  Department of Computer Science \` Reed College \\
+  \textbf{Problem Set 3:}\` \textbf{Instructor:} Chanathip Namprempre
+\end{tabbing}
+
+
+\hrule
+
+\vspace{.4in}
+
+\begin{center}
+\textbf{\Large Problem Set 3}
+\end{center}
+
+
+\vspace{.2in}
+
+
+\begin{questions}
+
+  \question 
+  Consider the following security definition for pseudorandom generator.
+
+  \bigskip
+  \fbox{%
+    \parbox{0.9\linewidth}{%
+      Let $m$ and $n$ be positive integers. Let $\prgG:\bits^m \rightarrow \bits^n$ be a pseudorandom generator, and
+      let $\advA$ be an adversary against $\prgG$. We define the following
+      subroutines, experiment, and advantage function.
+      
+      \bigskip
+      \begin{tabular}{l|l}
+      \begin{minipage}{\textwidth}
+        \begin{tabbing}
+          123\=123\=123\=\kill
+          Subroutine $\Initialize(w)$ \\
+          \> If $w = 0$ \\
+          \> \> then $y \getsr \bits^n$ \\
+          \> \> else $s \getsr \bits^m \;;\; y \gets \prgG(s)$ \\
+          \> Return $y$
+        \end{tabbing}
+      \end{minipage}
+      &
+      \begin{minipage}{\textwidth}
+        \begin{tabbing}
+          123\=123\=\kill
+          Experiment $\ExpPRGb{\prgG}{\advA}{w}$ \\
+          \> $y \getsr \Initialize(w)$ \\
+          \> $d \getsr \advA(y)$ \\
+          \> Return $d$ \\
+        \end{tabbing}
+      \end{minipage}
+      \end{tabular}
+
+      \bigskip
+      \noindent We define the \textit{prg* advantage} of an
+      adversary $\advA$ attacking $\prgG$ as
+      \[
+      \AdvPRGb{\prgG}{\advA} = \Prob{\ExpPRGb{\prgG}{\advA}{1} \Rightarrow 1} -  \Prob{\ExpPRGb{\prgG}{\advA}{0} \Rightarrow 1}  \;.
+      \]
+    }
+  }
+
+  Recall the definition of $\Adv^{\mathrm{prg}}$ defined in the textbook and studied in class. Prove that, for all $\prgG$ and $\advA$, 
+  \[ \AdvPRGb{\prgG}{\advA} = \AdvPRG{\prgG}{\advA}\;. \]
+
+
+  \question Let $m$ and $n$ be positive integers, and let $G_1:\bits^m \rightarrow bits^n$ and $G_2:\bits^m \rightarrow bits^n$ be pseudorandom generators. Define a pseudorandom generator $G: \bits^m \rightarrow \bits^{2n}$ as follows. For any $s \in \bits^m$,
+  \[ G(s) \;=\; G_1(s) \| G_2(s)\;. \]
+  Suppose that $G_1$ and $G_2$ are secure under the PRG security notion. Is $G$ necessarily a secure PRG? Prove your answer. Be sure to provide a complete proof. Specifically, if you answer yes, specify a reduction along with an analysis relating the advantages of relevant adversaries and their resource usage. If you answer no, specify a counterexample, an attack, and an analysis of the adversary's advantage and resource usage. As always, an adversary requiring a minimal amount of resources while achieving a high advantage value is better.
+
+  \question Let $m$ and $n$ be positive integers, and let $G_1:\bits^m \rightarrow bits^n$ and $G_2:\bits^m \rightarrow bits^n$ be pseudorandom generators. Define a pseudorandom generator $G: \bits^{2m} \rightarrow \bits^{2n}$ as follows. For any $s_1,s_2 \in \bits^m$,
+  \[ G(s_1s_2) \;=\; G_1(s_1) \| G_2(s_2)\;. \]
+  Suppose that $G_1$ and $G_2$ are secure under the PRG security notion. Is $G$ necessarily a secure PRG? Prove your answer. Be sure to provide a complete proof. Specifically, if you answer yes, specify a reduction along with an analysis relating the advantages of relevant adversaries and their resource usage. If you answer no, specify a counterexample, an attack, and an analysis of the adversary's advantage and resource usage. As always, an adversary requiring a minimal amount of resources while achieving a high advantage value is better.
+
+
+  \question Let $n$ be a positive integer. Recall that $[\KG]$ denotes the set of all possible keys output by the algorithm $\KG$. Let $\MAscheme = (\KG,\Tag,\Vf)$ be a MAC scheme secure under the SUF-CMA security notion, and let $\bits^n$ be the message space for $\MAscheme$. We define $\MAscheme' = (\KG,\Tag',\Vf')$ where, for all $M \in \bits^{2n}$, for all $K \in [\KG]$,
+  \[ \Tag'_K(M)  \;=\;  \Tag_K( M[1]) \| \Tag_K( M[2] )  \]
+  where $M = M[1]M[2]$ and $|M[1]| = |M[2]|$.
+  \begin{parts}
+    \part Write a deterministic and stateless algorithm $\Vf'$ that would ensure that $\MAscheme'$ satisfies the correctness condition. 
+
+    \part Is $\MAscheme'$ necessarily a secure MAC scheme? Prove your answer. Be sure to provide a complete proof. Specifically, if you answer yes, specify a reduction along with an analysis relating the advantages of relevant adversaries and their resource usage. If you answer no, specify a counterexample, an attack, and an analysis of the adversary's advantage and resource usage. As always, an adversary requiring a minimal amount of resources while achieving a high advantage value is better.
+  \end{parts}
+
+  \question Let $n$ be a positive integer. Recall that $[\KG]$ denotes the set of all possible keys output by the algorithm $\KG$. Let $\MAscheme = (\KG,\Tag,\Vf)$ be a MAC scheme secure under the SUF-CMA security notion, and let $\bits^n$ be the message space for $\MAscheme$. We define $\MAscheme' = (\KG,\Tag',\Vf')$ where, for all $M \in \bits^{n}$, for all $K \in [\KG]$,
+  \[ \Tag'_K(M)  \;=\;  \Tag_K(M) \| \Tag_K(M)  \;. \]
+  \begin{parts}
+    \part Write a deterministic and stateless algorithm $\Vf'$ that would ensure that $\MAscheme'$ satisfies the correctness condition. 
+
+    \part Is $\MAscheme'$ necessarily a secure MAC scheme? Prove your answer. Be sure to provide a complete proof. Specifically, if you answer yes, specify a reduction along with an analysis relating the advantages of relevant adversaries and their resource usage. If you answer no, specify a counterexample, an attack, and an analysis of the adversary's advantage and resource usage. As always, an adversary requiring a minimal amount of resources while achieving a high advantage value is better.
+  \end{parts}
+
+  \question Let $n$ be a positive integer. Recall that $[\KG]$ denotes the set of all possible keys output by the algorithm $\KG$. Let $\MAscheme_1 = (\KG,\Tag_1,\Vf_1)$ and $\MAscheme_2 = (\KG,\Tag_2,\Vf_2)$ be MAC schemes secure under the SUF-CMA security notion, and let $\bits^n$ be the message space for $\MAscheme_1$ and $\MAscheme_2$. We define $\MAscheme_3 = (\KG,\Tag_3,\Vf_3)$ where, for all $M \in \bits^{n}$, for all $K \in [\KG]$,
+  \[ \Tag_3(K, M)  \;=\;  \Tag_1( K, M) \| \Tag_2( K, M )  \;. \]
+  (Note that the notation here is slightly different from the previous question to avoid potential confusion regarding the algorithm name and the subscript $K$.)
+  \begin{parts}
+    \part Write a deterministic and stateless algorithm $\Vf_3$ that would ensure that $\MAscheme_3$ satisfies the correctness condition. 
+
+    \part Is $\MAscheme_3$ necessarily a secure MAC scheme? Prove your answer. Be sure to provide a complete proof. Specifically, if you answer yes, specify a reduction along with an analysis relating the advantages of relevant adversaries and their resource usage. If you answer no, specify a counterexample, an attack, and an analysis of the adversary's advantage and resource usage. As always, an adversary requiring a minimal amount of resources while achieving a high advantage value is better.
+  \end{parts}
+  
+\end{questions}
+\end{document}

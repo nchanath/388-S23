@@ -130,11 +130,11 @@
   \[ \AdvPRGb{\prgG}{\advA} = \AdvPRG{\prgG}{\advA}\;. \]
 
 
-  \question Let $m$ and $n$ be positive integers, and let $G_1:\bits^m \rightarrow bits^n$ and $G_2:\bits^m \rightarrow bits^n$ be pseudorandom generators. Define a pseudorandom generator $G: \bits^m \rightarrow \bits^{2n}$ as follows. For any $s \in \bits^m$,
+  \question Let $m$ and $n$ be positive integers, and let $G_1:\bits^m \rightarrow \bits^n$ and $G_2:\bits^m \rightarrow \bits^n$ be pseudorandom generators. Define a pseudorandom generator $G: \bits^m \rightarrow \bits^{2n}$ as follows. For any $s \in \bits^m$,
   \[ G(s) \;=\; G_1(s) \| G_2(s)\;. \]
   Suppose that $G_1$ and $G_2$ are secure under the PRG security notion. Is $G$ necessarily a secure PRG? Prove your answer. Be sure to provide a complete proof. Specifically, if you answer yes, specify a reduction along with an analysis relating the advantages of relevant adversaries and their resource usage. If you answer no, specify a counterexample, an attack, and an analysis of the adversary's advantage and resource usage. As always, an adversary requiring a minimal amount of resources while achieving a high advantage value is better.
 
-  \question Let $m$ and $n$ be positive integers, and let $G_1:\bits^m \rightarrow bits^n$ and $G_2:\bits^m \rightarrow bits^n$ be pseudorandom generators. Define a pseudorandom generator $G: \bits^{2m} \rightarrow \bits^{2n}$ as follows. For any $s_1,s_2 \in \bits^m$,
+  \question Let $m$ and $n$ be positive integers, and let $G_1:\bits^m \rightarrow \bits^n$ and $G_2:\bits^m \rightarrow \bits^n$ be pseudorandom generators. Define a pseudorandom generator $G: \bits^{2m} \rightarrow \bits^{2n}$ as follows. For any $s_1,s_2 \in \bits^m$,
   \[ G(s_1s_2) \;=\; G_1(s_1) \| G_2(s_2)\;. \]
   Suppose that $G_1$ and $G_2$ are secure under the PRG security notion. Is $G$ necessarily a secure PRG? Prove your answer. Be sure to provide a complete proof. Specifically, if you answer yes, specify a reduction along with an analysis relating the advantages of relevant adversaries and their resource usage. If you answer no, specify a counterexample, an attack, and an analysis of the adversary's advantage and resource usage. As always, an adversary requiring a minimal amount of resources while achieving a high advantage value is better.
 

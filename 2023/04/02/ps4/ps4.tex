@@ -81,7 +81,7 @@
 
 \vspace{.2in}
 
-\noindent For this problem set, assume the following building blocks. Let $n$ be a positive integer, and let $E: \bits^n \times \bits^n \rightarrow \bits^n$ be a block cipher secure under the PRF security notion. Recall the counter mode encryption CTRC studied in class. The pseudocode for the encryption algorithm is included here for your convenience. We will use the version where the very first block cipher application is performed on 0. (See the body of the for loop.) As usual, in the pseudocode we assume automatic type conversion between integers and their binary representation as bitstrings to avoid cluttering up our pseudocode. (For example, $C[0]$ is a bitstring even though its value comes from $\ctr$, which is an integer. The automatic type conversion is assumed here.)
+\noindent For this problem set, assume the following building blocks. Let $n$ be a positive integer, and let $E: \bits^n \times \bits^n \rightarrow \bits^n$ be a block cipher secure under the PRF security notion. Recall the counter mode encryption CTRC scheme $(\KG,\CTRCEnc,\CTRCDec)$ studied in class. The pseudocode for the encryption algorithm $\CTRCEnc$ is included here for your convenience. We will use the version where the very first block cipher application is performed on 0. (See the body of the for loop.) As usual, in the pseudocode we assume automatic type conversion between integers and their binary representation as bitstrings to avoid cluttering up our pseudocode. (For example, $C[0]$ is a bitstring even though its value comes from $\ctr$, which is an integer. The automatic type conversion is assumed here.)
 
   \begin{tabbing}
     1234\=123\=123\=123\=123\=\kill
@@ -95,10 +95,10 @@
     \> Return $C[0]\ldots C[m]$
   \end{tabbing}
 
-\noindent You may use without proof the fact that PRFs make good MACs. That is, you may assume that, if $E$ is a block cipher as defined above and if $\KG$ is the usual key generation algorithm (namely, an algorithm that simply returns a uniform randomly chosen bitstring of length $n$), the following construction yields a MAC scheme $\MAscheme = (\KG,\Tag)$ secure under the SUF-CMA security notion.
+\noindent You may use without proof the fact that PRFs make good MACs. That is, you may assume that, if $E$ is a block cipher as defined above and if $\KG$ is the usual key generation algorithm (namely, an algorithm that simply returns a uniform randomly chosen bitstring of length $n$), the following construction yields a MAC scheme $\MAscheme = (\KG,\PRFTag)$ secure under the SUF-CMA security notion.
   \begin{tabbing}
     1234\=123\=123\=123\=123\=\kill
-    Algorithm $\Tag(K,M)$ \\
+    Algorithm $\PRFTag(K,M)$ \\
     \> If $(|M| = 0)$ or $(|M| \neq n)$ then return $\bot$ \\
     \> Return $E_K(M)$
   \end{tabbing}
@@ -130,7 +130,7 @@
     Algorithm $\Enc'(K_1K_2,M)$ \\
     \> Parse $M$ into $n$-bit blocks $M[1]\ldots M[m]$ \\
     \> $s \gets M[1] \xor \ldots \xor M[m]$ \\
-    \> Return $\CTRCEnc(K_1, M) \| \Tag(K_2,s)$ \\
+    \> Return $\CTRCEnc(K_1, M) \| \PRFTag(K_2,s)$ \\
     \\
     \\
     \\
@@ -145,7 +145,7 @@
     \> If $M = \bot$ return $\bot$ \\
     \> Parse $M$ into $n$-bit blocks $M[1]\ldots M[m]$ \\
     \> $s \gets M[1] \xor \ldots \xor M[m]$ \\
-    \> If $T = \Tag(K_2,s)$ return $M$ \\
+    \> If $T = \PRFTag(K_2,s)$ return $M$ \\
     \> Return $\bot$
   \end{tabbing}
   \end{minipage}

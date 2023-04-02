@@ -1,0 +1,292 @@
+\documentclass{exam}
+
+\usepackage{colortbl}
+\usepackage{fancyvrb}
+\usepackage{listings} 
+\usepackage{amsmath}
+
+\setlength{\textwidth}{6.5in}
+\setlength{\textheight}{9in}
+\setlength{\oddsidemargin}{0in}
+\setlength{\evensidemargin}{0in}
+\setlength{\topmargin}{0in}
+\setlength{\headheight}{0in}
+\setlength{\headsep}{0in}
+\setlength{\footskip}{0.5in}
+
+\def\COURSENAME{Cryptography}
+\def\COURSECODE{CSCI/MATH 388}
+\def\YEAR{2023}
+
+\definecolor{lightgreen}{cmyk}{.25,0,.25,0}
+\definecolor{black}{rgb}{0,0,0}
+\definecolor{dgray}{rgb}{0.1,0.1,0.1}
+\definecolor{lgray}{rgb}{0.5,0.5,0.5}
+\definecolor{dblue}{rgb}{.2,.4,.6}
+\definecolor{lblue}{rgb}{.2,0,.7}
+\definecolor{llblue}{rgb}{.2,0,.6}
+\definecolor{gold}{rgb}{0.8512,0.6042,0.0000}
+\definecolor{dred}{rgb}{0.9,0,0}
+\definecolor{lred}{rgb}{1.0000,0.2013,0.1405}
+\definecolor{orange}{rgb}{1,0.3,0}
+\definecolor{dgreen}{rgb}{.01,.6,.06}
+\definecolor{lgreen}{rgb}{0.2610,0.8730,0.2875}
+\definecolor{peachpuff}{rgb}{1.0000,0.7197,0.5181}
+\definecolor{cornflowerblue}{rgb}{0.0859,0.2912,0.8708}
+\definecolor{deepskyblue}{rgb}{0.0000,0.5227,1.0000}
+\definecolor{lightskyblue}{rgb}{0.1946,0.6324,1.0000}
+\definecolor{darkturquoise}{rgb}{0.0000,0.6324,0.6861}
+\definecolor{darkseagreen}{rgb}{0.2264,0.5227,0.2498}
+\definecolor{lemon}{rgb}{0.8512,0.8416,0.5181}
+\definecolor{dred}{rgb}{0.9,0,0}
+
+
+\newcommand{\T}{\mathbf{T}}
+\newcommand{\F}{\mathbf{F}}
+\newcommand{\Q}{\mathbf{Q}}
+
+
+\newcommand{\bheading}[1]{\vspace{10pt} \noindent \textbf{#1}}
+
+
+\newenvironment{problemstmt}[1]{\begin{rm}
+  \vspace{.3in}
+  \noindent \textbf{Problem #1.}}
+  {\end{rm}
+  \vspace{.3in}
+  \hrule}
+
+\input{header.tex}
+
+
+\begin{document}
+
+
+\begin{tabbing}
+  \`\=\kill
+  \textbf{\COURSECODE:} \COURSENAME \` Spring \YEAR \\
+  Department of Computer Science \` Reed College \\
+  \textbf{Problem Set 4:}\` \textbf{Instructor:} Chanathip Namprempre
+\end{tabbing}
+
+
+\hrule
+
+\vspace{.4in}
+
+\begin{center}
+\textbf{\Large Problem Set 4}
+\end{center}
+
+
+\vspace{.2in}
+
+\noindent For this problem set, assume the following building blocks. Let $n$ be a positive integer, and let $E: \bits^n \times \bits^n \rightarrow \bits^n$ be a block cipher secure under the PRF security notion. Recall the counter mode encryption CTRC studied in class. The pseudocode for the encryption algorithm is included here for your convenience. We will use the version where the very first block cipher application is performed on 0. (See the body of the for loop.) As usual, in the pseudocode we assume automatic type conversion between integers and their binary representation as bitstrings to avoid cluttering up our pseudocode. (For example, $C[0]$ is a bitstring even though its value comes from $\ctr$, which is an integer. The automatic type conversion is assumed here.)
+
+  \begin{tabbing}
+    1234\=123\=123\=123\=123\=\kill
+    Algorithm $\CTRCEnc(K,M)$ \\
+    \> If $(|M| = 0)$ or $(|M| \bmod n \neq 0)$ then return $\bot$ \\
+    \> Parse $M$ as $n$-bit blocks $M[1] \ldots M[m]$ \\
+    \> $\mathsf{static} \; \ctr \gets 0$ \\
+    \> $C[0] \gets \ctr \;;\;\ctr \gets \ctr + m$ \\
+    \> If $\ctr -1 > 2^n-1$ then return $\bot$ \\
+    \> For $i = 1$ to $m$ do $C[i] \gets  E_K(C[0] + i - 1) \xor M[i]$ \\
+    \> Return $C[0]\ldots C[m]$
+  \end{tabbing}
+
+\noindent You may use without proof the fact that PRFs make good MACs. That is, you may assume that, if $E$ is a block cipher as defined above and if $\KG$ is the usual key generation algorithm (namely, an algorithm that simply returns a uniform randomly chosen bitstring of length $n$), the following construction yields a MAC scheme $\MAscheme = (\KG,\Tag)$ secure under the SUF-CMA security notion.
+  \begin{tabbing}
+    1234\=123\=123\=123\=123\=\kill
+    Algorithm $\Tag(K,M)$ \\
+    \> If $(|M| = 0)$ or $(|M| \neq n)$ then return $\bot$ \\
+    \> Return $E_K(M)$
+  \end{tabbing}
+  Note that since this tagging algorithm is deterministic and stateless, we do not need to specify the verification algorithm. (It simply recomputes the tag and compares the result with the tag that it has received.)
+
+  \newpage
+  
+  \begin{questions}
+
+  \question Consider an authenticated encryption scheme $\schemefont{AE1} = (\KG',\Enc',\Dec')$ defined as follows.
+
+  \bigskip
+  \hspace{-25pt} \begin{tabular}{l|l|l}
+  \begin{minipage}{2in}
+  \begin{tabbing}
+    1234\=123\=123\=123\=123\=\kill
+    Algorithm $\KG'$ \\
+    \> $K_1 \getsr \bits^n$ \\
+    \> $K_2 \getsr \bits^n$ \\
+    \> Return $K_1 \| K_2$  \\
+    \\
+    \\
+    \\
+  \end{tabbing}
+  \end{minipage} & 
+  \begin{minipage}{2in}
+  \begin{tabbing}
+    1234\=123\=123\=123\=123\=\kill
+    Algorithm $\Enc'(K_1K_2,M)$ \\
+    \> Parse $M$ into $n$-bit blocks $M[1]\ldots M[m]$ \\
+    \> $s \gets M[1] \xor \ldots \xor M[m]$ \\
+    \> Return $\CTRCEnc(K_1, M) \| \Tag(K_2,s)$ \\
+    \\
+    \\
+    \\
+  \end{tabbing}
+  \end{minipage} & 
+  \begin{minipage}{2in}
+  \begin{tabbing}
+    1234\=123\=123\=123\=123\=\kill
+    Algorithm $\Dec'(K_1K_2,C)$ \\
+    \> Parse $C$ into $n$-bit blocks $C[0]\ldots C[m] T$ \\
+    \> $M \gets \CTRCDec(K_1,C[0] \ldots C[m])$ \\
+    \> If $M = \bot$ return $\bot$ \\
+    \> Parse $M$ into $n$-bit blocks $M[1]\ldots M[m]$ \\
+    \> $s \gets M[1] \xor \ldots \xor M[m]$ \\
+    \> If $T = \Tag(K_2,s)$ return $M$ \\
+    \> Return $\bot$
+  \end{tabbing}
+  \end{minipage}
+  \end{tabular}
+  
+  \begin{parts}
+    \part Is $\schemefont{AE1}$ secure under the IND-CPA security notion?
+
+    \part Prove your answer to the previous question. Be sure to provide a complete proof. Specifically, if you answer yes, specify a reduction along with an analysis relating the advantages of relevant adversaries and their resource usage. If you answer no, specify a counterexample, an attack, and an analysis of the adversary's advantage and resource usage. As always, an adversary requiring a minimal amount of resources while achieving a high advantage value is better.
+
+    \part Is $\schemefont{AE1}$ secure under the INT-CTXT security notion?
+
+    \part Prove your answer to the previous question. Be sure to provide a complete proof. Specifically, if you answer yes, specify a reduction along with an analysis relating the advantages of relevant adversaries and their resource usage. If you answer no, specify a counterexample, an attack, and an analysis of the adversary's advantage and resource usage. As always, an adversary requiring a minimal amount of resources while achieving a high advantage value is better.
+    
+  \end{parts}
+
+
+  \question Define an encryption scheme $\SEscheme = (\KG, \Enc, \Dec)$ as follows.
+  
+  \bigskip
+  \hspace{-25pt} \begin{tabular}{l|l|l}
+  \begin{minipage}{2in}
+  \begin{tabbing}
+    1234\=123\=123\=123\=123\=\kill
+    Algorithm $\KG$ \\
+    \> $K \getsr \bits^n$ \\
+    \> Return $K$  \\
+    \\
+  \end{tabbing}
+  \end{minipage} & 
+  \begin{minipage}{2in}
+  \begin{tabbing}
+    1234\=123\=123\=123\=123\=\kill
+    Algorithm $\Enc(K,M)$ \\
+    \> Return $0\| \CTRCEnc(K, M)$ \\
+    \\
+    \\
+  \end{tabbing}
+  \end{minipage} & 
+  \begin{minipage}{2in}
+  \begin{tabbing}
+    1234\=123\=123\=123\=123\=\kill
+    Algorithm $\Dec(K,C)$ \\
+    \> Parse $C$ as $b\|C'$ where $b$ is a bit \\
+    \> Parse $C'$ into $n$-bit blocks $C[0]\ldots C[m] T$ \\
+    \> $M \gets \CTRCDec(K,C[0] \ldots C[m])$ \\
+    \> Return $M$
+  \end{tabbing}
+  \end{minipage}
+  \end{tabular}
+  \medskip
+  
+  \noindent Let $\MAscheme = (\KG, \Tag,\Vf)$ be an SUF-CMA secure MAC scheme, and let each tag produced by $\Tag$ be of length $t$. Define an authenticated encryption scheme $\schemefont{AE2} = (\KG',\Enc',\Dec')$ as follows.
+  
+  \bigskip
+  \hspace{-25pt} \begin{tabular}{l|l|l}
+  \begin{minipage}{2in}
+  \begin{tabbing}
+    1234\=123\=123\=123\=123\=\kill
+    Algorithm $\KG'$ \\
+    \> $K_1 \getsr \bits^n$ \\
+    \> $K_2 \getsr \bits^n$ \\
+    \> Return $K_1 \| K_2$  \\
+  \end{tabbing}
+  \end{minipage} & 
+  \begin{minipage}{2in}
+  \begin{tabbing}
+    1234\=123\=123\=123\=123\=\kill
+    Algorithm $\Enc'(K_1K_2,M)$ \\
+    \> Return $\Enc(K_1, M\| \Tag(K_2,M))$ \\
+    \\
+    \\
+  \end{tabbing}
+  \end{minipage} & 
+  \begin{minipage}{2in}
+  \begin{tabbing}
+    1234\=123\=123\=123\=123\=\kill
+    Algorithm $\Dec'(K_1K_2,C)$ \\
+    \> $M' \gets \Dec(K_1,C)$ \\
+    \> If $M' = \bot$ return $\bot$ \\
+    \> Parse $M'$ into $M \| T$ where $|T| = t$ \\
+    \> Return $\Vf(K_2,M,T)$
+  \end{tabbing}
+  \end{minipage}
+  \end{tabular}
+
+  \begin{parts}
+    \part Is $\schemefont{AE2}$ secure under the INT-CTXT security notion?
+
+    \part Prove your answer to the previous question. Be sure to provide a complete proof. Specifically, if you answer yes, specify a reduction along with an analysis relating the advantages of relevant adversaries and their resource usage. If you answer no, specify a counterexample, an attack, and an analysis of the adversary's advantage and resource usage. As always, an adversary requiring a minimal amount of resources while achieving a high advantage value is better.
+    
+  \end{parts}
+
+  \newpage
+  \question Let $\MAscheme = (\KG, \Tag,\Vf)$ be an SUF-CMA secure MAC scheme, and let each tag produced by $\Tag$ be of length $t$. Define an authenticated encryption scheme $\schemefont{AE3} = (\KG',\Enc',\Dec')$ as follows.
+  
+  \bigskip
+  \hspace{-25pt} \begin{tabular}{l|l|l}
+  \begin{minipage}{2in}
+  \begin{tabbing}
+    1234\=123\=123\=123\=123\=\kill
+    Algorithm $\KG'$ \\
+    \> $K_1 \getsr \bits^n$ \\
+    \> $K_2 \getsr \bits^n$ \\
+    \> Return $K_1 \| K_2$  \\
+    \\
+  \end{tabbing}
+  \end{minipage} & 
+  \begin{minipage}{2in}
+  \begin{tabbing}
+    1234\=123\=123\=123\=123\=\kill
+    Algorithm $\Enc'(K_1K_2,M)$ \\
+    \> $C' \getsr \CTRCEnc(K_1, M)$ \\
+    \> Parse $C'$ as $\IV$ and $C$ where $|\IV| = n$ \\
+    \> $T \getsr \Tag(K_2, C)$ \\
+    \> Return $\IV \| C \| T$
+    \\
+  \end{tabbing}
+  \end{minipage} & 
+  \begin{minipage}{2in}
+  \begin{tabbing}
+    1234\=123\=123\=123\=123\=\kill
+    Algorithm $\Dec'(K_1K_2,C')$ \\
+    \> Parse $C'$ as $\IV \| C \| T$ \\
+    \> \> where $|\IV| = n$ and $|T| = t$\\
+    \> If $\Vf(K_2, C, T) \neq 1$ return $\bot$ \\
+    \> $M \gets \CTRCDec(K_1, \IV \| C)$ \\
+    \> Return $M$
+  \end{tabbing}
+  \end{minipage}
+  \end{tabular}
+
+  \begin{parts}
+    \part Is $\schemefont{AE3}$ secure under the INT-CTXT security notion?
+
+    \part Prove your answer to the previous question. Be sure to provide a complete proof. Specifically, if you answer yes, specify a reduction along with an analysis relating the advantages of relevant adversaries and their resource usage. If you answer no, specify a counterexample, an attack, and an analysis of the adversary's advantage and resource usage. As always, an adversary requiring a minimal amount of resources while achieving a high advantage value is better.
+    
+  \end{parts}
+
+  
+  
+  
+\end{questions}
+\end{document}

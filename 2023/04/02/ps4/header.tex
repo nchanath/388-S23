@@ -1,0 +1,200 @@
+\def\nextt{\:;\:}
+\def\gets{\;\leftarrow\;}
+\def\getsr{\stackrel{{\scriptscriptstyle \$}}{\leftarrow}}
+\newcommand{\Colon}{\;:\;}
+\newcommand{\Prob}[1]{\Pr\left[\: #1 \:\right]}
+\newcommand{\ProbExp}[2]{\Pr\left[\: #1 \: : \: #2\: \right]}
+\newcommand{\Probb}[2]{{\Pr}_{#1}\left[\: #2 \:\right]}
+\newcommand{\Probc}[2]{\Pr\left[\: #1 \:{\left|\right.}\:#2\:\right]}
+\newcommand{\Probcc}[3]{{\Pr}_{#1}\left[\: #2 \:\left|\right.\:#3\:\right]}
+\newcommand{\CondProb}[2]{{\Pr}\left[\: #1\:\left|\right.\:#2\:\right]}
+\newcommand{\suchthat}{{\mbox{s.t.\ }}}
+\newcommand{\Exp}{\mathbf{Exp}}
+\newcommand{\Adv}{\mathbf{Adv}}
+\newcommand{\advA}{A}
+\newcommand{\ExpH}[3]{\Exp^{\mathrm{cr#1}\mbox{-}\mathrm{kk}}_{#2}(#3)}
+\newcommand{\AdvH}[3]{\Adv^{\mathrm{cr#1}\mbox{-}\mathrm{kk}}_{#2}(#3)}
+\newcommand{\AdvHz}[2]{\Adv^{\mathrm{cr0}}_{#1}(#2)}
+\newcommand{\DS}{\mathcal{DS}}
+\newcommand{\MA}{\mathcal{MA}}
+\newcommand{\Enc}{\mathcal{E}}
+\newcommand{\Dec}{\mathcal{D}}
+\newcommand{\Sign}{\mathrm{Sign}}
+\newcommand{\KG}{\mathsf{KG}}
+\newcommand{\mac}{\mathcal{MAC}}
+\newcommand{\verify}{\mathcal{VF}}
+\newcommand{\ctr}{ctr}
+\newcommand{\xor}{\oplus}
+\newcommand{\bits}{\{0,1\}}
+\newcommand{\SE}{\mathcal{SE}}
+\newcommand{\K}{\mathcal{K}}
+\newcommand{\E}{\mathcal{E}}
+\newcommand{\D}{\mathcal{D}}
+\newcommand{\MAC}{\mathsf{Tag}}
+\newcommand{\VF}{\mathsf{VF}}
+\newcommand{\lxlcpa}{\mathrm{lxl}\mbox{-}\mathrm{cpa}}
+\newcommand{\pad}{\mathsf{pad}}
+\newcommand{\IV}{\mathsf{IV}}
+
+\newcommand{\op}{op}
+\newcommand{\Z}{\mathbf{Z}}
+\newcommand{\R}{\mathbf{R}}
+\newcommand{\N}{\mathbf{N}}
+\newcommand{\true}{\mathbf{T}}
+\newcommand{\false}{\mathbf{F}}
+\newcommand{\ConsE}{\mathsf{Cons}_E}
+
+\newcommand{\hash}{\mathsf{H}}
+\newcommand{\tostr}[1]{\langle #1 \rangle}
+%\newcommand{\tonum}[1]{\llbracket #1 \rrbracket}
+\newcommand{\tonum}[1]{[\![ #1 ]\!]}
+
+\newcommand{\INDCPA}{\mathsf{IND}\mbox{-}\mathsf{CPA}}
+\newcommand{\INDCCA}{\mathsf{IND}\mbox{-}\mathsf{CCA}}
+\newcommand{\WUFCMA}{\mathsf{WUF}\mbox{-}\mathsf{CMA}}
+\newcommand{\SUFCMA}{\mathsf{SUF}\mbox{-}\mathsf{CMA}}
+\newcommand{\PRF}{\mathsf{PRF}}
+\newcommand{\PRPCPA}{\mathsf{PRP}\mbox{-}\mathsf{CPA}}
+\newcommand{\PRPCCA}{\mathsf{PRP}\mbox{-}\mathsf{CCA}}
+\newcommand{\Coll}{\mathsf{Coll}}
+\newcommand{\padwithzeros}{\mathsf{padwithzeros}}
+
+\newcommand{\subroutinefont}[1]{\texttt{#1}}
+\newcommand{\ExpHcoll}[2]{\Exp^{\mathrm{coll}}_{#1}(#2)}
+\newcommand{\AdvHcoll}[2]{\Adv^{\mathrm{coll}}_{#1}(#2)}
+\newcommand{\Initialize}{\subroutinefont{Initialize}}
+\newcommand{\Finalize}{\subroutinefont{Finalize}}
+
+\newcommand{\DES}{\mathsf{DES}}
+\newcommand{\AES}{\mathsf{AES}}
+\newcommand{\DESX}{\mathsf{DESX}}
+\newcommand{\ECB}{\mathsf{ECB}}
+\newcommand{\CBC}{\mathsf{CBC}}
+\newcommand{\CTR}{\mathsf{CTR}}
+\newcommand{\CTRC}{\mathsf{CTRC}}
+\newcommand{\CTRCEnc}{\mathsf{CTRC}\mbox{-}\mathsf{Enc}}
+\newcommand{\CTRCDec}{\mathsf{CTRC}\mbox{-}\mathsf{Dec}}
+
+
+\newcommand{\pk}{\mathsf{pk}}
+\newcommand{\sk}{\mathsf{sk}}
+
+\newcommand{\cbcr}{CBC\$}
+\newcommand{\cbcc}{CBCC}
+\newcommand{\cfbr}{CFB\$}
+\newcommand{\cfbc}{CFBC}
+\newcommand{\ofbr}{OFB\$}
+\newcommand{\ofbc}{OFBC}
+\newcommand{\ctrr}{CTR\$}
+\newcommand{\ctrc}{CTRC}
+\newcommand{\prf}{\mathrm{prf}}
+\newcommand{\prpcpa}{\mathrm{prp\mbox{-}cpa}}
+\newcommand{\prpcca}{\mathrm{prp\mbox{-}cca}}
+\newcommand{\indcpa}[1]{\mathrm{ind\mbox{-}cpa\mbox{-}#1}}
+\newcommand{\indcpaa}{\mathrm{ind\mbox{-}cpa}}
+\newcommand{\indcca}[1]{\mathrm{ind\mbox{-}cca\mbox{-}#1}}
+\newcommand{\indccaa}{\mathrm{ind\mbox{-}cca}}
+\newcommand{\prcpa}{\mathrm{pr\mbox{-}cpa}}
+\newcommand{\algfont}[1]{\mathsf{#1}}
+
+
+
+\newcommand{\boldit}[1]{\textbf{\color{lblue} #1}}
+\newcommand{\term}[1]{\boldit{#1}}
+
+\newcommand{\verylongleftarrow}[1]
+      {\setlength{\unitlength}{.01in}
+      \begin{picture}(#1,1) \put(#1,0){\vector(-1,0){#1}} \end{picture}}
+\newcommand{\verylongrightarrow}[1]             %longleft and rightgoing arrows
+      {\setlength{\unitlength}{.01in}           %for protocols
+      \begin{picture}(#1,1) \put(0,0){\vector(1,0){#1}} \end{picture}}
+\newcommand{\leftgoing}[2]{{\stackrel{{\displaystyle #2}} {\verylongleftarrow{#1}}}}
+\newcommand{\rightgoing}[2]{{\stackrel{{\displaystyle #2}} {\verylongrightarrow{#1}}}}
+
+\newcommand{\leftgoinga}[1]{\leftgoing{230}{#1} }
+\newcommand{\rightgoinga}[1]{\rightgoing{230}{#1} }
+
+\newcommand{\leftgoingb}[1]{\leftgoing{300}{#1} }
+\newcommand{\rightgoingb}[1]{\rightgoing{300}{#1} }
+
+\newcommand{\Dm}{\mathbf{\cal D}}
+\newcommand{\Rg}{\mathbf{\cal R}}
+\newcommand{\ufcma}{\mathrm{uf\mbox{-}cma}}
+\newcommand{\shf}{\algfont{shf}}
+%\newcommand{\shfone}{\phantom{\shf1_K}}
+\newcommand{\shapad}{\mathsf{shapad}}
+\newcommand{\shaone}{\mathsf{SHA1}}
+\newcommand{\shfone}{\mathsf{SHF1}}
+
+\newcommand{\orfont}[1]{\mathtt{#1}}
+\newcommand{\schemefont}[1]{\mathsf{#1}}
+\newcommand{\flagfont}[1]{\mathsf{#1}}
+
+
+\newcommand{\InitializeCode}{\underline{\textbf{proc} \procfont{Initialize}}}
+\newcommand{\FinalizeCode}[1]{\underline{\textbf{proc} \procfont{Finalize}(#1)}}
+\newcommand{\returnst}{\Rightarrow \true}
+\newcommand{\returnsf}{\Rightarrow \false}
+\newcommand{\g}{{g}}
+\newcommand{\simEnc}{{SimEnc}}
+\newcommand{\greal}{\g \text{ \texttt{real}}}
+\newcommand{\grand}{\g \text{ \texttt{rand}}}
+\newcommand{\EncO}{\orfont{Enc}}
+\newcommand{\DecO}{\orfont{Dec}}
+\newcommand{\DecVO}{\VfO}
+\newcommand{\Tag}{\algfont{Tag}}
+\newcommand{\Vf}{\algfont{Vf}}
+\newcommand{\TagO}{\orfont{Tag}}
+\newcommand{\VfO}{\orfont{Vf}}
+\newcommand{\ExpPRF}[2]{\Exp^{\mathrm{prf}}_{#1}(#2)}
+\newcommand{\AdvPRF}[2]{\Adv^{\mathrm{prf}}_{#1}(#2)}
+\newcommand{\ExpSEIndCPA}[2]{\Exp^{\mathrm{ind\mbox{-}cpa}}_{#1}(#2)}
+\newcommand{\ExpSEIndCCA}[2]{\Exp^{\mathrm{ind\mbox{-}cca}}_{#1}(#2)}
+\newcommand{\AdvSEIndCPA}[2]{\Adv^{\mathrm{ind\mbox{-}cpa}}_{#1}(#2)}
+\newcommand{\AdvSEIndCCA}[2]{\Adv^{\mathrm{ind\mbox{-}cca}}_{#1}(#2)}
+\newcommand{\ExpSEIndCPAb}[3]{\Exp^{\mathrm{ind\mbox{-}cpa\mbox{-}#3}}_{#1}(#2)}
+\newcommand{\ExpSEIndCCAb}[3]{\Exp^{\mathrm{ind\mbox{-}cca\mbox{-}#3}}_{#1}(#2)}
+\newcommand{\AdvSEIndCPAb}[2]{\Adv^{\mathrm{ind\mbox{-}cpa*}}_{#1}(#2)}
+\newcommand{\AdvSEIndCCAb}[2]{\Adv^{\mathrm{ind\mbox{-}cca*}}_{#1}(#2)}
+\newcommand{\ExpSEIndCPAr}[3]{\Exp^{\mathrm{ror\mbox{-}ind\mbox{-}cpa\mbox{-}#3}}_{#1}(#2)}
+\newcommand{\ExpSEIndCCAr}[3]{\Exp^{\mathrm{ror\mbox{-}ind\mbox{-}cca\mbox{-}#3}}_{#1}(#2)}
+\newcommand{\AdvSEIndCPAr}[2]{\Adv^{\mathrm{ror\mbox{-}ind\mbox{-}cpa}}_{#1}(#2)}
+\newcommand{\AdvSEIndCCAr}[2]{\Adv^{\mathrm{ror\mbox{-}ind\mbox{-}cca}}_{#1}(#2)}
+\newcommand{\ExpMAW}[2]{\Exp^{\mathrm{wuf}\mbox{-}\mathrm{cma}}_{#1}(#2)}
+\newcommand{\AdvMAW}[2]{\Adv^{\mathrm{wuf}\mbox{-}\mathrm{cma}}_{#1}(#2)}
+\newcommand{\ExpMAS}[2]{\Exp^{\mathrm{suf}\mbox{-}\mathrm{cma}}_{#1}(#2)}
+\newcommand{\AdvMAS}[2]{\Adv^{\mathrm{suf}\mbox{-}\mathrm{cma}}_{#1}(#2)}
+\newcommand{\AdvPRG}[2]{\Adv^{\mathrm{prg}}_{#1}(#2)}
+\newcommand{\AdvPRGb}[2]{\Adv^{\mathrm{prg*}}_{#1}(#2)}
+\newcommand{\ExpPRG}[2]{\Exp^{\mathrm{prg}}_{#1}(#2)}
+\newcommand{\ExpPRGa}[1]{\Exp^{\mathrm{prg}}_{#1}}
+\newcommand{\ExpPRGb}[3]{\Exp^{\mathrm{prg}\mbox{-}#3}_{#1}(#2)}
+
+
+\newcommand{\prgG}{G}
+\newcommand{\Succ}{\mathbf{Succ}}
+\newcommand{\AEscheme}{\schemefont{AE}}
+\newcommand{\SEscheme}{\schemefont{SE}}
+\newcommand{\MAscheme}{\schemefont{MA}}
+\newcommand{\PKEscheme}{\schemefont{PKE}}
+
+\newcommand{\hashfn}{H}
+\newcommand{\advB}{B}
+\newcommand{\AdvHpre}[2]{\Adv^{\mathrm{pre}}_{#1}(#2)}
+\newcommand{\AdvHsec}[2]{\Adv^{\mathrm{sec}}_{#1}(#2)}
+\newcommand{\ExpHpre}[2]{\Exp^{\mathrm{pre}}_{#1}(#2)}
+\newcommand{\ExpHsec}[2]{\Exp^{\mathrm{sec}}_{#1}(#2)}
+\renewcommand{\eqref}[1]{Equation~(\ref{#1})}
+
+\newcommand{\bad}{\mathsf{bad}}
+
+
+\def\getsr{\stackrel{{\scriptscriptstyle \$}}{\leftarrow}}
+
+
+\newcommand{\tableminipage}{\begin{minipage}{0.5in}
+\begin{tabular}{|l|l|} \hline 
+  \textbf{output} & \hspace{4.5in} \\ \hline
+\end{tabular} 
+\end{minipage}}
+

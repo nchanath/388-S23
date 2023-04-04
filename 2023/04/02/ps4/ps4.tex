@@ -190,7 +190,7 @@
     1234\=123\=123\=123\=123\=\kill
     Algorithm $\Dec(K,C)$ \\
     \> Parse $C$ as $b\|C'$ where $b$ is a bit \\
-    \> Parse $C'$ into $n$-bit blocks $C[0]\ldots C[m] T$ \\
+    \> Parse $C'$ into $n$-bit blocks $C[0]\ldots C[m]$ \\
     \> $M \gets \CTRCDec(K,C[0] \ldots C[m])$ \\
     \> Return $M$
   \end{tabbing}
@@ -198,7 +198,7 @@
   \end{tabular}
   \medskip
   
-  \noindent Let $\MAscheme = (\KG, \Tag,\Vf)$ be an SUF-CMA secure MAC scheme, and let each tag produced by $\Tag$ be of length $t$. Define an authenticated encryption scheme $\schemefont{AE2} = (\KG',\Enc',\Dec')$ as follows.
+  \noindent Let $\MAscheme = (\KG, \Tag,\Vf)$ be an SUF-CMA secure MAC scheme, and let each tag produced by $\Tag$ be of length $n$. Define an authenticated encryption scheme $\schemefont{AE2} = (\KG',\Enc',\Dec')$ as follows.
   
   \bigskip
   \hspace{-25pt} \begin{tabular}{l|l|l}
@@ -209,6 +209,7 @@
     \> $K_1 \getsr \bits^n$ \\
     \> $K_2 \getsr \bits^n$ \\
     \> Return $K_1 \| K_2$  \\
+    \\
   \end{tabbing}
   \end{minipage} & 
   \begin{minipage}{2in}
@@ -216,6 +217,7 @@
     1234\=123\=123\=123\=123\=\kill
     Algorithm $\Enc'(K_1K_2,M)$ \\
     \> Return $\Enc(K_1, M\| \Tag(K_2,M))$ \\
+    \\
     \\
     \\
   \end{tabbing}
@@ -226,8 +228,9 @@
     Algorithm $\Dec'(K_1K_2,C)$ \\
     \> $M' \gets \Dec(K_1,C)$ \\
     \> If $M' = \bot$ return $\bot$ \\
-    \> Parse $M'$ into $M \| T$ where $|T| = t$ \\
-    \> Return $\Vf(K_2,M,T)$
+    \> Parse $M'$ into $M \| T$ where $|T| = n$ \\
+    \> If $\Vf(K_2,M,T) = 0$ return $\bot$ \\
+    \> Return $M'$
   \end{tabbing}
   \end{minipage}
   \end{tabular}

@@ -1,0 +1,144 @@
+\documentclass{exam}
+
+\usepackage{colortbl}
+\usepackage{fancyvrb}
+\usepackage{listings} 
+\usepackage{amsmath}
+
+\setlength{\textwidth}{6.5in}
+\setlength{\textheight}{9in}
+\setlength{\oddsidemargin}{0in}
+\setlength{\evensidemargin}{0in}
+\setlength{\topmargin}{0in}
+\setlength{\headheight}{0in}
+\setlength{\headsep}{0in}
+\setlength{\footskip}{0.5in}
+
+\def\COURSENAME{Cryptography}
+\def\COURSECODE{CSCI/MATH 388}
+\def\YEAR{2023}
+
+\definecolor{lightgreen}{cmyk}{.25,0,.25,0}
+\definecolor{black}{rgb}{0,0,0}
+\definecolor{dgray}{rgb}{0.1,0.1,0.1}
+\definecolor{lgray}{rgb}{0.5,0.5,0.5}
+\definecolor{dblue}{rgb}{.2,.4,.6}
+\definecolor{lblue}{rgb}{.2,0,.7}
+\definecolor{llblue}{rgb}{.2,0,.6}
+\definecolor{gold}{rgb}{0.8512,0.6042,0.0000}
+\definecolor{dred}{rgb}{0.9,0,0}
+\definecolor{lred}{rgb}{1.0000,0.2013,0.1405}
+\definecolor{orange}{rgb}{1,0.3,0}
+\definecolor{dgreen}{rgb}{.01,.6,.06}
+\definecolor{lgreen}{rgb}{0.2610,0.8730,0.2875}
+\definecolor{peachpuff}{rgb}{1.0000,0.7197,0.5181}
+\definecolor{cornflowerblue}{rgb}{0.0859,0.2912,0.8708}
+\definecolor{deepskyblue}{rgb}{0.0000,0.5227,1.0000}
+\definecolor{lightskyblue}{rgb}{0.1946,0.6324,1.0000}
+\definecolor{darkturquoise}{rgb}{0.0000,0.6324,0.6861}
+\definecolor{darkseagreen}{rgb}{0.2264,0.5227,0.2498}
+\definecolor{lemon}{rgb}{0.8512,0.8416,0.5181}
+\definecolor{dred}{rgb}{0.9,0,0}
+
+
+\newcommand{\T}{\mathbf{T}}
+\newcommand{\F}{\mathbf{F}}
+\newcommand{\Q}{\mathbf{Q}}
+
+
+\newcommand{\bheading}[1]{\vspace{10pt} \noindent \textbf{#1}}
+
+
+\newenvironment{problemstmt}[1]{\begin{rm}
+  \vspace{.3in}
+  \noindent \textbf{Problem #1.}}
+  {\end{rm}
+  \vspace{.3in}
+  \hrule}
+
+\input{header.tex}
+
+
+\begin{document}
+
+
+\begin{tabbing}
+  \`\=\kill
+  \textbf{\COURSECODE:} \COURSENAME \` Spring \YEAR \\
+  Department of Computer Science \` Reed College \\
+  \textbf{Problem Set 5:}\` \textbf{Instructor:} Chanathip Namprempre
+\end{tabbing}
+
+
+\hrule
+
+\vspace{.4in}
+
+\begin{center}
+\textbf{\Large Problem Set 5}
+\end{center}
+
+
+\vspace{.2in}
+
+\begin{questions}
+
+  \question Answer the following questions regarding $\Z_{23}^*$.
+
+  \begin{parts}
+    \part What are the elements of $\Z_{23}^*$? List all of them.
+    \part What is the order of this group?
+    \part What is the order of 2?
+    \part What is the order of 5?
+    \part Is $\Z_{23}^*$ cyclic? If your answer is ``yes,'' provide a generator. If your answer is ``no,'' explain your answer. 
+  \end{parts}
+  
+
+  \question Prove that the hardness of the DDH problem implies the hardness of the CDH problem. Use the definitions of these problems as specified in the lecture slides.
+
+  \question Let $p$ be an odd prime, and let $G$ be $\Z_p^*$. Suppose $g$ is a generator of $\Z_p^*$ but oddly enough is kept secret. Let $x \in \Z_{p-1}$, and let $y = g^x \bmod p$. Given inputs $p, x,$ and $y$, is it possible to compute $g$ in polynomial time in the size of the inputs? Prove your answer. You may refer to algorithms we studied in class by name without explicitly defining how they work.
+
+  \question Compute $19^{571500000} \bmod 77$ by hand. Show your work and justify all the steps in your computation.
+
+  \question Prove that DDH is easy in $\Z_p^*$ when $p$ is an odd prime. Here, you may use without proof, the properties we studied in class about the Legendre (equivalently in this context, the Jacobi) symbol.
+
+  \question Suppose DDH is hard for a group $G$. Consider the ElGamal encryption scheme  $(\KG,\E,\D)$ based on $G$ as studied in class and recalled here for your convenience. (In the description, $g$ is a generator of $G$, and $m$ is its order.) Is this scheme secure under IND-CCA? Prove your answer.
+
+  \begin{center}
+  \begin{tabular}{c|c|c}
+  \begin{minipage}{\textwidth}
+    \begin{tabbing}
+      123\=123\=123\=\kill
+      \textbf{Alg} $\KG$ \\
+      $x \getsr \Z_{m}$ \\
+      $X \gets g^x$ \\
+      Return $(X, x)$ \\
+    \end{tabbing}\end{minipage} &
+  \begin{minipage}{\textwidth}
+    \begin{tabbing}
+      123\=123\=123\=\kill
+      \textbf{Alg} $\E_X(M)$ \\
+      $y \getsr \Z_{m} \:;\: Y \gets g^y$ \\
+      $K \gets X^y$ \\
+      $W \gets K \cdot M$ \\
+      Return $(Y,W)$
+    \end{tabbing}\end{minipage} &
+  \begin{minipage}{\textwidth}
+    \begin{tabbing}
+      123\=123\=123\=\kill
+      \textbf{Alg} $\D_x(Y,W)$ \\
+      $K \gets Y^x$ \\
+      $M \gets W \cdot K^{-1}$ \\
+      Return $M$ \\
+    \end{tabbing}\end{minipage} 
+  \end{tabular}
+  \end{center}
+  
+  As always, be sure to provide a complete proof. Specifically, if you answer yes, specify a reduction along with an analysis relating the advantages of relevant adversaries and their resource usage. If you answer no, specify a counterexample, an attack, and an analysis of the adversary's advantage and resource usage. As always, an adversary requiring a minimal amount of resources while achieving a high advantage value is better.  
+  
+
+  \question Let $(N_1, e_1)$ and $(N_2, e_2)$ be the RSA public keys for Alice and Bob, respectively. Suppose however that by coincidence, $N_1$ and $N_2$ are not coprime. Can you compute the decryption exponents $d_1$ and $d_2$ belonging to Alice and Bob, respectively? Why or why not? Prove your answer.
+
+  
+\end{questions}
+\end{document}
